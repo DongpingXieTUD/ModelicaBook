@@ -23,8 +23,8 @@ msgid ""
 "Let me attempt to address these questions in the hope that they will "
 "intrigue you and cause you to dig deeper."
 msgstr ""
-"你可能出于某些原因，机缘巧合看到本书。若你没有任何Modelica方面的知识，对于Modelica语言你"
-"可能会有一些疑惑。我尝试列出这些问题，希望可以引起你的兴趣并引导你深入地探索。"
+"您出于某些原因，机缘巧合地看到本书。若您没有任何Modelica方面的知识，对于Modelica语言您"
+"可能会有一些疑惑。我尝试着列出这些问题，希望可以引起您的兴趣并引导您进行更深入的探索。"
 
 #: ../../source/front/intro.rst:10
 msgid "What is Modelica?"
@@ -46,7 +46,7 @@ msgstr ""
 #: ../../source/front/intro.rst:20
 msgid "Why Modelica?"
 msgstr ""
-"为什么是Modelica？"
+"为什么选择Modelica？"
 
 #: ../../source/front/intro.rst:22
 msgid ""
@@ -88,7 +88,8 @@ msgstr ""
 
 #: ../../source/front/intro.rst:46
 msgid "What Modelica allows me to do"
-msgstr "我可以用Modelica做什么?"
+msgstr ""
+"我能用Modelica语言做什么？"
 
 #: ../../source/front/intro.rst:48
 msgid ""
