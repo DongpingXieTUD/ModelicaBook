@@ -362,6 +362,7 @@ buildmo:
 
 dirhtml_cn: update_cn buildmo
 	$(SPHINXBUILD) -b dirhtml -d build/doctrees -D language=cn source build/dirhtml_cn
+	cat locale/cn/cn.css >> build/dirhtml_cn/_static/xogeny.css
 
 dirhtml_kr: update_kr buildmo
 	$(SPHINXBUILD) -b dirhtml -d build/doctrees -D language=kr source build/dirhtml_kr
