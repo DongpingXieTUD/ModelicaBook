@@ -30,16 +30,15 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) sou
 # the i18n builder cannot share the environment and doctrees with the others
 I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 
-.PHONY: help clean distclean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf pdf text man changes linkcheck doctest gettext results
+.PHONY: help clean distclean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf pdf text man changes linkcheck doctest gettext results uploadCIdeps
 
 # This builds the material necessary to create the book
 book: specs results dirhtml server
 
 specs: specs.py
-	-mkdir results
-	-mkdir results/json
-	-mkdir results/js
-	-mkdir plots
+	-mkdir -p results/json
+	-mkdir -p results/js
+	-mkdir -p plots
 	-rm -f plots/*
 	python specs.py
 
@@ -59,8 +58,8 @@ local_js: specs
 # This downloads already compiled JS and JSON files.  Use this if you
 # do not have the ability to compile JS files locally
 download_js:
-	-mkdir results/js
-	-mkdir results/json
+	-mkdir -p results/js
+	-mkdir -p results/json
 	(cd results/js; $(SYNC) 's3://$(S3BUCKET)/_static/js/*.js.gz' .)
 	(cd results/js; gzip -dk *.js.gz)
 	(cd results/json; $(SYNC) 's3://$(S3BUCKET)/_static/json/*.json.gz' .)
@@ -92,7 +91,7 @@ deploy_print: pdf ebook
 icons:
 	@echo "Generate Icons"
 	-rm -rf docs-dir
-	-mkdir docs-dir
+	-mkdir -p docs-dir
 #       If you have issues here, make sure you can import OMPython
 #       and OMPythonIDL into the default python interpreter (doing
 #       a `export PYTHONPATH=...` if necessary.
@@ -159,7 +158,7 @@ web_kr: dirhtml_kr build_links_kr
 
 node: dirhtml build_links
 	-rm -rf build/node
-	-mkdir build/node
+	-mkdir -p build/node
 	cp -r build/dirhtml/* build/node
 	cp nw-package.json build/node/package.json
 	cp nw-app.js build/node/app.js
@@ -264,7 +263,7 @@ latex: latex-letter latex-a4
 latex-letter: specs results images
 	@echo
 	@echo "Applying horrible LaTeX hack..."
-	-mkdir build
+	-mkdir -p build
 	git checkout $(SOURCEDIR)/index.rst # make sure we have pristine index.rst
 	cp $(SOURCEDIR)/index.rst $(BUILDDIR)/index.rst.orig
 	(echo "#####\nDUMMY\n#####"; cat $(BUILDDIR)/index.rst.orig) > $(SOURCEDIR)/index.rst
@@ -281,7 +280,7 @@ latex-letter: specs results images
 latex-a4: specs results images
 	@echo
 	@echo "Applying horrible LaTeX hack..."
-	-mkdir build
+	-mkdir -p build
 	git checkout $(SOURCEDIR)/index.rst # make sure we have pristine index.rst
 	cp $(SOURCEDIR)/index.rst $(BUILDDIR)/index.rst.orig
 	(echo "#####\nDUMMY\n#####"; cat $(BUILDDIR)/index.rst.orig) > $(SOURCEDIR)/index.rst
@@ -406,3 +405,8 @@ PDFs:=	$(foreach dir, $(IMAGEDIRS), $(patsubst %.svg,%.pdf,$(wildcard $(dir)/*.s
 
 # Make a rule to build the PDFs
 images: $(PDFs)
+
+# upload the most time consuming deps so they can be used by CI build
+uploadCIdeps: specs results images
+	tar cJf build/CIdeps.tar.xz results plots docs-dir
+	($(S3PUT) build/CIdeps.tar.xz s3://files.xogeny.com/ModelicaByExample/)

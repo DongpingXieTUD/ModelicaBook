@@ -29,7 +29,7 @@ components or other subsystems.  In other words, it doesn't
 other components.  Typically, these subsystem models are created by
 dragging, dropping and connecting component and other subsystem models
 schematically.  While component models are "flat" (they don't contain
-other components that are subsystems, only equations), subsystem models are
+other components or subsystems, only equations), subsystem models are
 hierarchical.
 
 We'll often refer to a subsystem model as a *system model*.  A system
@@ -136,7 +136,7 @@ qualifier.  In the case of the ``Rotational`` connector, the across
 variable is ``phi``, the angular position, and the through variable is
 ``tau``, the torque.
 
-Sign Convections
+Sign Conventions
 ++++++++++++++++
 
 Also recall from our previous discussion that Modelica models should
@@ -521,7 +521,7 @@ If a candidate solution violates an assertion, then it is
 automatically considered to be inaccurate.  The violated assertion
 will automatically trigger the refinement process in an attempt to
 find a solution that is more accurate and, hopefully, doesn't violate
-the solution.  However, if these refinement processes lead to a
+the assertion.  However, if these refinement processes lead to a
 solution that is sufficiently accurate (*i.e.,* satisfies the accuracy
 requirements to within the acceptable tolerance), but that solution
 still violates any assertions in the system, then the simulation
