@@ -21,7 +21,7 @@ S3CMD = s3cmd $(S3FLAGS)
 SYNC = $(S3CMD) sync -P -F
 S3GET = $(S3CMD) get
 S3PUT = $(S3CMD) put -P
-S3BUCKET = cnbook
+S3BUCKET = book.xogeny.com
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -342,13 +342,13 @@ pdf-a4:	latex-a4
 	@echo "pdflatex finished; the PDF files are in $(BUILDDIR)/latex-a4."
 
 pdf-cn: latex-a4-cn
-	@echo "Running LaTeX files through xelatex..." 
-	(cp locale/cn/mycjk.sty $(BUILDDIR)/xelatex; ) 
-	(cd $(BUILDDIR)/xelatex; sed -i '/\usepackage\[utf8\]{inputenc}/d' ModelicaByExample.tex) 
-	(cd $(BUILDDIR)/xelatex; sed -i '/.DeclareUnicodeCharacter.*/d' ModelicaByExample.tex) 
-	(cd $(BUILDDIR)/xelatex; sed -i 's/{babel}/{mycjk}/' ModelicaByExample.tex) 
-	(cd $(BUILDDIR)/xelatex; xelatex -shell-escape -interaction=batchmode  ModelicaByExample.tex; echo 'first pass') 
-	(cd $(BUILDDIR)/xelatex; xelatex  -shell-escape -interaction=batchmode ModelicaByExample.tex; echo 'second pass') 
+	@echo "Running LaTeX files through xelatex..."
+	(cp locale/cn/mycjk.sty $(BUILDDIR)/xelatex; )
+	(cd $(BUILDDIR)/xelatex; sed -i '/\usepackage\[utf8\]{inputenc}/d' ModelicaByExample.tex)
+	(cd $(BUILDDIR)/xelatex; sed -i '/.DeclareUnicodeCharacter.*/d' ModelicaByExample.tex)
+	(cd $(BUILDDIR)/xelatex; sed -i 's/{babel}/{mycjk}/' ModelicaByExample.tex)
+	(cd $(BUILDDIR)/xelatex; xelatex -shell-escape -interaction=batchmode  ModelicaByExample.tex; echo 'first pass')
+	(cd $(BUILDDIR)/xelatex; xelatex  -shell-escape -interaction=batchmode ModelicaByExample.tex; echo 'second pass')
 
 latexpdf: pdf
 
