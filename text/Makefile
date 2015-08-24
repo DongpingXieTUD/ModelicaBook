@@ -44,8 +44,13 @@ else
 SPHINXDEPS = specs results images
 endif
 
+# This builds and (maybe publish) everything
+all: web_all pdf-cn pdf-a4
+
 # This builds the material necessary to create the book
 book: specs results dirhtml server
+
+book_cn: specs_cn results dirhtml_cn server_cn
 
 specs: specs.py
 	-mkdir -p results/json
@@ -153,6 +158,8 @@ server_kr: dirhtml_kr build_links_kr
 
 #server_it: dirhtml_it build_links
 #	(cd build/dirhtml_it; python -m SimpleHTTPServer)
+
+web_all: web web_cn
 
 web: dirhtml build_links
 	(cd build/dirhtml; $(SYNC) * s3://$(S3BUCKET)/)

@@ -22,4 +22,4 @@ RUN git  clone https://github.com/xogeny/ModelicaBook.git
 
 # The default commands when run as a container
 WORKDIR /opt/MBE/ModelicaBook/text
-CMD ["/usr/bin/make", "web_cn"]
+CMD ["/usr/bin/make", "all"]
