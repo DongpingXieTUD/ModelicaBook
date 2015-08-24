@@ -21,7 +21,7 @@ S3CMD = s3cmd $(S3FLAGS)
 SYNC = $(S3CMD) sync -P -F
 S3GET = $(S3CMD) get
 S3PUT = $(S3CMD) put -P
-S3BUCKET = book.xogeny.com
+S3BUCKET = cnbook
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
