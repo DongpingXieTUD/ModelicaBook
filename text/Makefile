@@ -21,7 +21,7 @@ S3CMD = s3cmd $(S3FLAGS)
 SYNC = $(S3CMD) sync -P -F
 S3GET = $(S3CMD) get
 S3PUT = $(S3CMD) put -P
-S3BUCKET = book.xogeny.com
+S3BUCKET = cnbook
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -36,6 +36,7 @@ SET_BOOK_LANG_CN = BOOK_LANG=cn
 .PHONY: help clean distclean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf pdf text man changes linkcheck doctest gettext results uploadCIdeps
 
 # For CI we don't want to rebuild the whole dependencies each time.
+# But the Docker instance will have to build them from scratch
 # To enable the CI build do, e.g., `make CI_BUILD=1 pdf`
 CI_BUILD=0
 ifeq ($(CI_BUILD),1)
@@ -44,22 +45,19 @@ else
 SPHINXDEPS = specs results images
 endif
 
-# This builds and (maybe publish) everything
-all: web_all pdf-cn pdf-a4
-
 # This builds the material necessary to create the book
 book: specs results dirhtml server
 
 book_cn: specs_cn results dirhtml_cn server_cn
 
-specs: specs.py
+specs: results specs.py 
 	-mkdir -p results/json
 	-mkdir -p results/js
 	-mkdir -p plots
 	-rm -f plots/*
 	python specs.py
 
-specs_cn: specs.py
+specs_cn: results specs.py 
 	-mkdir -p results/json
 	-mkdir -p results/js
 	-mkdir -p plots
@@ -158,8 +156,6 @@ server_kr: dirhtml_kr build_links_kr
 
 #server_it: dirhtml_it build_links
 #	(cd build/dirhtml_it; python -m SimpleHTTPServer)
-
-web_all: web web_cn
 
 web: dirhtml build_links
 	(cd build/dirhtml; $(SYNC) * s3://$(S3BUCKET)/)
