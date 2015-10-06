@@ -157,7 +157,7 @@ server_kr: dirhtml_kr build_links_kr
 #server_it: dirhtml_it build_links
 #	(cd build/dirhtml_it; python -m SimpleHTTPServer)
 
-web: specs dirhtml build_links
+web: dirhtml build_links
 	(cd build/dirhtml; $(SYNC) * s3://$(S3BUCKET)/)
 
 web_cn: dirhtml_cn build_links_cn
