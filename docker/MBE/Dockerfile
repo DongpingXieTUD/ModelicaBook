@@ -18,7 +18,7 @@ USER builder
 
 WORKDIR /opt/MBE
 
-RUN git  clone https://github.com/xogeny/ModelicaBook.git
+RUN git clone https://github.com/xie-dongping/ModelicaBook.git && git cd ModelicaBook && git checkout test_docker
 
 # The default commands when run as a container
 WORKDIR /opt/MBE/ModelicaBook/text
