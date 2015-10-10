@@ -1,5 +1,5 @@
 [default]
-access_key = 111111111111111111
+access_key = $AWS_ACCESS_KEY_ID
 access_token =
 add_encoding_exts =
 add_headers =
@@ -47,7 +47,7 @@ recursive = False
 recv_chunk = 4096
 reduced_redundancy = False
 restore_days = 1
-secret_key = aa/aaaaaaa#aaaaa
+secret_key = $AWS_SECRET_KEY
 send_chunk = 4096
 server_side_encryption = False
 simpledb_host = sdb.amazonaws.com
