@@ -50,14 +50,14 @@ book: specs results dirhtml server
 
 book_cn: specs_cn results dirhtml_cn server_cn
 
-specs: results specs.py 
+specs: specs.py 
 	-mkdir -p results/json
 	-mkdir -p results/js
 	-mkdir -p plots
 	-rm -f plots/*
 	python specs.py
 
-specs_cn: results specs.py 
+specs_cn: specs.py 
 	-mkdir -p results/json
 	-mkdir -p results/js
 	-mkdir -p plots
