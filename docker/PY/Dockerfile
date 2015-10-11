@@ -3,6 +3,8 @@
 
 FROM mtiller/book-om
 
+RUN apt-get update
+
 # Now Install base Python
 RUN apt-get install -y python python-dev python-pip python-virtualenv
 
