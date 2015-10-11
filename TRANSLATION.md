@@ -5,12 +5,6 @@ follow.  This will be an evolving discussion and I will gladly accept
 pull requests from translators or others who have experience in such
 matters in an effort to improve the translation process.
 
-## Current Status
-
-At this point, it should be "safe" to translate any text up to and
-including **Chapter 2 (Vectors and Arrays)** without fear of the
-underlying text changing.
-
 ## Coordinators
 
 The following people have taken on the responsibility for translation
@@ -24,6 +18,7 @@ volunteering to coordinate the translation into that language:
   * **Spanish** - [Susana López](mailto:susana.lopez@tekniker.es)
   * **Chinese** - [Lionel Belmon](mailto:lionel.belmon@globalcrown.com.cn) [Discussion](https://github.com/xogeny/ModelicaBook/wiki/Convention-for-Chinese-Translation)
   * **Italian** - [Marco Romanoni](mailto:marco.romanoni@dofware.com)
+  * **Portuguese** - [Julião Cicero](mailto:juliaojunior@gmail.com)
 
 ## Explanation
 

@@ -8,6 +8,8 @@
 
     <!-- Site Properities -->
     <meta name="generator" content="Sphinx 1.2" />
+    <meta name="description" content="Release {{ release }}" />
+
     {{ metatags() }}
 
     <title>{{ title|striptags|e }}{{ titlesuffix }}</title>
@@ -29,17 +31,10 @@
     {{ navmenu() }}
     <div id="header" class="segment">
       <div class="container">
-	<div class="ribbon">
-	  <img src="/_static/images/early_access.png">
-	</div>
-
 	<a href="{{ pathto(master_doc) }}">
 	  <img src="{{ pathto('_static/images/TitleHeading.png', 1) }}">
         </a>
 	<div class="ui divider"></div>
-	<p class="pull-right">
-	  <span class="pull-right">Release: {{ release }}</span>
-	</p>
 	<div class="ui breadcrumb">
 	  {%- for parent in parents %}
 	  <a class="section" href="{{ parent.link|e }}">{{ parent.title }}</a>
