@@ -2,6 +2,7 @@
 # The build 
 make clean
 make specs
+make results
 make web
 make pdf-a4
 make clean
