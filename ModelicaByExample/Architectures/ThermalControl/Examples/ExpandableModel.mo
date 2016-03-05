@@ -6,6 +6,6 @@ model ExpandableModel "Thermal system using expandable bus architecture"
     redeclare replaceable Implementations.ContinuousActuator actuator,
     redeclare replaceable Implementations.TemperatureSensor sensor,
     redeclare replaceable Implementations.ExpandablePIControl
-      controller(setpoint=300, k=20, T=1)
+      controller
       constrainedby Interfaces.ControlSystem_WithExpandableBus);
 end ExpandableModel;
